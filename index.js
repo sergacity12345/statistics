@@ -1,4 +1,4 @@
-let numbas = [1,2,3,4,5,6,7,8,9,10,11,2,3,3,4,5,6,6,6,7,7,8,9,9,9]
+let numbas = [1,2,3,4,5,6,7,8,9,10,11,2,3,3,4,5]
 
 
 class Statistics{
@@ -16,16 +16,28 @@ class Statistics{
 
     static median(arr){
         // to calculate the most occuring
-        let counts = {}
-        for(let i =0; i < arr.length; i++){
-            if(counts[arr[i]]){
-                counts[arr[i]] += 1;
-            }else{
-                counts[arr[i]] =1;
-            }
+
+        let sortedArray = arr.sort((a,b)=>a -b)
+        const sortTotal = sortedArray.reduce((x,y)=>x + y,0)
+        console.log(sortedArray)
+
+
+        
+        if(sortTotal %2 == 0){
+            // let obj = Object.keys
+            let first = Math.round((sortedArray.length + 1)/2)
+            let last = Math.round(10/2 +1)
+            let sortedArrayFirst = sortedArray[first]
+            let sortedArrayLast = sortedArray[last]
+            let result = Math.round((sortedArrayFirst + sortedArrayLast)/2)
+            return `${result} is the Median`
+        }else{
+            let firstNum = Math.round((sortedArray.length)/2)
+            console.log(firstNum)
+            let resultArray = sortedArray[firstNum]
+            return `${resultArray} is the Median here`
+
         }
-        let med = Math.round(((arr.length + 1)/2 + [(arr.length/2) + 1])/2)
-        return `${med} is the Median`
     }
 
     static mode(arr){
@@ -83,4 +95,4 @@ class Statistics{
 }
 
 // let stat = new Statistics()
-console.log(Statistics.range(numbas))
+console.log(Statistics.median(numbas))
